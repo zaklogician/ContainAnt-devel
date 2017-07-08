@@ -30,6 +30,7 @@ trait RandomHeuristic extends Heuristic {
     
     def choose(sort: Sort): Label = {
       val labels = grammar.labels(sort)
+// println( s"Choose sort: $sort, labels: ${labels}" )          
       labels(RNG.nextInt(labels.size))
     }
     

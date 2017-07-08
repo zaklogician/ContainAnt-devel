@@ -55,11 +55,14 @@ object CS2SubsetSum {
   type Solution = Set[Int]
   
   trait SubsetSumModule extends Module {
-    val empty: Solution = Set()
-    def add(i: Int, xs: Solution): Solution = xs + i
+    // val empty: Solution = Set.empty[Int]
+    // def add(i: Int, xs: Solution): Solution = xs + i
+    val empty: collection.immutable.Set[Int] = collection.immutable.Set.empty[Int]
+    def add(i: Int, xs: collection.immutable.Set[Int]): collection.immutable.Set[Int] = xs + i
   }
   
-  def subsetSum(target: Int)(solution: Solution): Double = {
+  // def subsetSum(target: Int)(solution: Solution): Double = {
+  def subsetSum(target: Int)(solution: collection.immutable.Set[Int]): Double = {
     if (solution.sum == target) 2
     else 1.0/ Math.abs(solution.sum - target).toDouble
   }
