@@ -8,7 +8,7 @@ package com.containant.casestudies
  *  Analyze the resulting data using the Wineberg-Christensen protocol.
  */
 
-
+import scala.reflect.runtime.universe._
 import scala.reflect.ClassTag
 
 import org.apache.commons.math3.stat._
@@ -29,7 +29,7 @@ object Framework {
     heuristic: Heuristic,
     instance: Module,
     maximizing: T => Double
-  )(implicit ev: ClassTag[T]): RunResult[T] = {
+  )(implicit ev: TypeTag[T], ew: ClassTag[T]): RunResult[T] = {
     object CA extends ContainAnt(heuristic)
     val created = CA create (instance, maximizing)
     RunResult[T](heuristic, created, maximizing(created))
@@ -89,7 +89,7 @@ object Framework {
     runs: Int,
     instance: Module,
     maximizing: T => Double
-  )(implicit ev: ClassTag[T]): ExperimentResult[T] = {
+  )(implicit ev: TypeTag[T], ew: ClassTag[T]): ExperimentResult[T] = {
     // Perform all runs
     val results1 = for(r <- 1 to runs) yield
       run(heuristic1, instance, maximizing)

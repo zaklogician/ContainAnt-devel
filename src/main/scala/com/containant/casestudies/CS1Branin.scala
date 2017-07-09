@@ -11,7 +11,7 @@ object CS1Branin {
   //////////////////////////////////////////////////////////////////////
   // Configuration
   val _seed: Int = 0xDEADBEEF
-  val _runs: Int = 2
+  val _runs: Int = 100
   // target fitness fn. evaluations ~ 100 for comparison with SMAC, which often
   //                                  terminates under 100 on this prob.
   
